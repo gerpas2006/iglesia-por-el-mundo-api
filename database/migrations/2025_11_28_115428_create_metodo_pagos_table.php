@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('productos', function (Blueprint $table) {
-            $table->id();  // Identificador principal
-            $table->string('title');  // Campo de texto corto
-            $table->decimal('precio', 10, 2);
+        Schema::create('metodo_pagos', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre_donacion');
+            $table->text('descripcion_donacion');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('productos');
+        Schema::dropIfExists('metodo_pagos');
     }
 };
