@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('fecha_donacion');
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('metodo_pago_id')->constrained('metodo_pagos');
-            $table->foreignId('tipo_donacion_id')->constrained('tipo_donaciones');
+            $table->foreignId('tipo_donacion_id')->constrained('tipo_donacions');
             $table->timestamps();
         });
     }

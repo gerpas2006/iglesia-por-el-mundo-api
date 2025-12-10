@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre_oracion');
             $table->text('texto_oracion');
-            $table->foreignId('tipo_oracion_id')->constrained('tipo_oraciones');
+            $table->foreignId('tipo_oracion_id')->constrained('tipo_oracions');
             $table->timestamps();
         });
     }
