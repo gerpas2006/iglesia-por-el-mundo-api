@@ -6,5 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class Donaciones extends Model
 {
+    use HasFactory;
+
+    protected $fillable = [
+        'nombre_donante',
+        'apellido_donante',
+        'donacion',
+        'mensaje',
+        'fecha_donacion',
+        'user_id',
+        'metodo_pago_id',
+        'tipo_donacion_id',
+        'created_at',
+        'updated_at'
+    ];
     //
+    public function tipoDonacion()
+    {
+        return $this->belongsTo(TipoDonacion::class, 'tipo_donacion_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+}
 }
