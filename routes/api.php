@@ -1,7 +1,8 @@
 <?php
 require __DIR__ . '/auth.php';
 
-use App\Http\Controllers\SecuenciaController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
