@@ -3,6 +3,7 @@ require __DIR__ . '/auth.php';
 
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\DonacionesController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,5 +15,5 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    //Route::apiResource('secuencias', SecuenciaController::class);
+    Route::apiResource('donaciones', DonacionesController::class);
 });

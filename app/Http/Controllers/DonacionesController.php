@@ -12,7 +12,7 @@ class DonacionesController extends Controller
      */
     public function index()
     {
-        //
+        return Donaciones::where('user_id', auth()->id())->get();
     }
 
     /**
@@ -37,6 +37,7 @@ class DonacionesController extends Controller
     public function show(Donaciones $donaciones)
     {
         //
+        return $donaciones;
     }
 
     /**
@@ -61,5 +62,6 @@ class DonacionesController extends Controller
     public function destroy(Donaciones $donaciones)
     {
         //
+        return Donaciones::destroy($donaciones->id);
     }
 }
