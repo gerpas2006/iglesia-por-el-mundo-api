@@ -12,7 +12,6 @@ class EventosController extends Controller
      */
     public function index()
     {
-                // Si el usuario es admin, devolver todas las donaciones
         if (auth()->user()->role === 'admin') {
             return Eventos::all();
         }
