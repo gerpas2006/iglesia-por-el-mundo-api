@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('eventos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_evento');
-            $table->date('fecha_evento');
+            $table->dateTime('fecha_evento');
             $table->string('ubicacion');
             $table->text('descripcion_evento');
+            $table->boolean('estado')->default(true);
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('tipo_evento_id')->constrained('tipo_eventos');
             $table->timestamps();
