@@ -12,6 +12,7 @@ class DonacionesController extends Controller
      */
     public function index()
     {
+        //$donaciones = Donaciones::all();
         return Donaciones::where('user_id', auth()->id())->get();
     }
 
