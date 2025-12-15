@@ -10,6 +10,7 @@ class Donaciones extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'nombre_donante',
         'apellido_donante',
         'donacion',

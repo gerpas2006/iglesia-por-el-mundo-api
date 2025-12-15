@@ -12,6 +12,12 @@ class EventosController extends Controller
      */
     public function index()
     {
+                // Si el usuario es admin, devolver todas las donaciones
+        if (auth()->user()->role === 'admin') {
+            return Eventos::all();
+        }
+        
+        return Eventos::where('user_id', auth()->id())->get();
         //
     }
 
@@ -60,6 +66,7 @@ class EventosController extends Controller
      */
     public function destroy(Eventos $eventos)
     {
+        
         //
     }
 }

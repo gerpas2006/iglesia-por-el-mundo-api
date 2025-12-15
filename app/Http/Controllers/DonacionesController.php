@@ -12,7 +12,10 @@ class DonacionesController extends Controller
      */
     public function index()
     {
-        //$donaciones = Donaciones::all();
+        if (auth()->user()->role === 'admin') {
+            return Donaciones::all();
+        }
+        
         return Donaciones::where('user_id', auth()->id())->get();
     }
 
