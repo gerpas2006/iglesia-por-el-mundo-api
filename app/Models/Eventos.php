@@ -15,6 +15,7 @@ class Eventos extends Model
         'fecha_evento',
         'ubicacion',
         'descripcion_evento',
+        'estado',
         'user_id',
         'tipo_evento_id'
     ];

@@ -12,6 +12,11 @@ class TipoEventoController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->role === 'admin') {
+            return TipoEvento::all();
+        }
+
+        return TipoEvento::where('user_id', auth()->id())->get();
         //
     }
 

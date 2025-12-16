@@ -35,9 +35,26 @@ class EventosController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        }
+        $validated = $request->validate([
+            'nombre_evento' => ['required', 'string', 'max:255'],
+            'fecha_evento' => ['required', 'date_format:Y-m-d H:i:s'],
+            'ubicacion' => ['required', 'string', 'max:255'],
+            'descripcion_evento' => ['required', 'string'],
+            'estado' => ['boolean'],
+            'tipo_evento_id' => ['required', 'exists:tipo_eventos,id'],
+        ]);
+        $eventos = Eventos::create([
+            'nombre_evento' => $request->nombre_evento,
+            'fecha_evento' => $request->fecha_evento,
+            'ubicacion' => $request->ubicacion,
+            'descripcion_evento' => $request->descripcion_evento,
+            'estado' => $request->estado ?? true,
+            'user_id' => auth()->id(),
+            'tipo_evento_id' => $request->tipo_evento_id,
+        ]);
 
+        return response()->json($eventos, 201);
+    }
     /**
      * Display the specified resource.
      */

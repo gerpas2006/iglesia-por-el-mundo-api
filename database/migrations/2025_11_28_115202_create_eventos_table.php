@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('descripcion_evento');
             $table->boolean('estado')->default(true);
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('tipo_evento_id')->constrained('tipo_eventos');
+            $table->foreignId('tipo_evento_id')->nullable()->constrained('tipo_eventos')->onDelete('set null');
             $table->timestamps();
         });
     }
