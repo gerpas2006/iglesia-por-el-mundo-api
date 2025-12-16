@@ -3,15 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class TipoOracion extends Model
 {
     use HasFactory;
     protected $fillable = [
         'nombre_oracion',
-        'descripcion_oracion',
-        'created_at',
-        'updated_at'
+        'descripcion_oracion'
     ];
     //
     public function oraciones()

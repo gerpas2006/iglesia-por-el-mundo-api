@@ -28,6 +28,16 @@ class TipoEventoController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'nombre_evento' => ['required', 'string', 'max:50'],
+            'descripcion_evento' => ['nullable', 'string']
+        ]);
+        $tipo_evento = TipoEvento::create([
+            'nombre_evento' => $request->nombre_evento,
+            'descripcion_evento' => $request->descripcion_evento
+        ]);
+        return response()->json($tipo_evento, 201);
         //
     }
 

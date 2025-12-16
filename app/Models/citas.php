@@ -14,9 +14,7 @@ class citas extends Model
         'fecha_y_hora_cita',
         'mensaje',
         'tipo_cita_id',
-        'user_id',
-        'created_at',
-        'updated_at'
+        'user_id'
     ];
     //
     public function tipoCita()

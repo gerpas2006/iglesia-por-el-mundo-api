@@ -3,15 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class MetodoPago extends Model
 {
     use HasFactory;
     protected $fillable = [
         'nombre_donacion',
-        'descripcion_donacion',
-        'created_at',
-        'updated_at'
+        'descripcion_donacion'
     ];
     //
     public function donaciones()

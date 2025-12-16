@@ -5,6 +5,9 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DonacionesController;
 use App\Http\Controllers\EventosController;
+use App\Http\Controllers\TipoDonacionController;
+use App\Http\Controllers\TipoEventoController;
+use App\Models\TipoDonacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,4 +24,12 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('eventos', EventosController::class);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('tipoDonaciones', TipoDonacionController::class);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('tipoEvento', TipoEventoController::class);
 });

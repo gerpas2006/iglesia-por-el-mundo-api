@@ -28,6 +28,15 @@ class TipoDonacionController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre_donacion' => ['required', 'string', 'max:50'],
+            'descripcion_donacion' => ['nullable', 'string']
+        ]);
+        $tipo_donacion = TipoDonacion::create([
+            'nombre_donacion' => $request->nombre_donacion,
+            'descripcion_donacion' => $request->descripcion_donacion
+        ]);
+        return response ()->json($tipo_donacion,201);
         //
     }
 

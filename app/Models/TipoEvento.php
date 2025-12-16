@@ -3,15 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class TipoEvento extends Model
 {
     use HasFactory;
     protected $fillable = [
         'nombre_evento',
-        'descripcion_evento',
-        'created_at',
-        'updated_at'
+        'descripcion_evento'
     ];
     //
     public function eventos()

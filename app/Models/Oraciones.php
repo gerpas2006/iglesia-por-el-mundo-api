@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Oraciones extends Model
@@ -10,9 +11,7 @@ class Oraciones extends Model
     protected $fillable = [
         'nombre_oracion',
         'texto_oracion',
-        'tipo_oracion_id',
-        'created_at',
-        'updated_at'
+        'tipo_oracion_id'
     ];
     //
     public function tipoOracion()

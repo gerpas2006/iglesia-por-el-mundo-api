@@ -15,7 +15,7 @@ class EventosController extends Controller
         if (auth()->user()->role === 'admin') {
             return Eventos::all();
         }
-        
+
         return Eventos::where('user_id', auth()->id())->get();
         //
     }
@@ -25,6 +25,8 @@ class EventosController extends Controller
      */
     public function create()
     {
+    
+        
         //
     }
 
@@ -34,7 +36,7 @@ class EventosController extends Controller
     public function store(Request $request)
     {
         //
-    }
+        }
 
     /**
      * Display the specified resource.
@@ -65,7 +67,7 @@ class EventosController extends Controller
      */
     public function destroy(Eventos $eventos)
     {
-        return Eventos::destroy($eventos->id);   
+        return Eventos::destroy($eventos->id);
         //
     }
 }

@@ -18,9 +18,7 @@ class Donaciones extends Model
         'fecha_donacion',
         'user_id',
         'metodo_pago_id',
-        'tipo_donacion_id',
-        'created_at',
-        'updated_at'
+        'tipo_donacion_id'
     ];
     //
     public function tipoDonacion()
