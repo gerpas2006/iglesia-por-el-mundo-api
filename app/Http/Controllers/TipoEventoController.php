@@ -76,5 +76,7 @@ class TipoEventoController extends Controller
     public function destroy(TipoEvento $tipoEvento)
     {
         //
+        return TipoEvento::destroy($tipoEvento->id);
+
     }
 }

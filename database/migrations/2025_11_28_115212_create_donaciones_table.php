@@ -18,8 +18,8 @@ return new class extends Migration
             $table->float('donacion');
             $table->text('mensaje');
             $table->date('fecha_donacion');
+            $table->enum('metodo', ['bizum', 'tarjeta', 'PayPal'])->default('bizum');
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('metodo_pago_id')->constrained('metodo_pagos');
             $table->foreignId('tipo_donacion_id')->constrained('tipo_donacions');
             $table->timestamps();
         });

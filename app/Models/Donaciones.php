@@ -16,8 +16,8 @@ class Donaciones extends Model
         'donacion',
         'mensaje',
         'fecha_donacion',
+        'metodo',
         'user_id',
-        'metodo_pago_id',
         'tipo_donacion_id'
     ];
     //

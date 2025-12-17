@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DonacionesController;
 use App\Http\Controllers\EventosController;
+use App\Http\Controllers\MetodoPagoController;
 use App\Http\Controllers\TipoDonacionController;
 use App\Http\Controllers\TipoEventoController;
 use App\Models\TipoDonacion;
