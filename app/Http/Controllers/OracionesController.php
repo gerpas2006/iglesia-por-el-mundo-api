@@ -12,6 +12,8 @@ class OracionesController extends Controller
      */
     public function index()
     {
+
+        return Oraciones::all();
         //
     }
 
@@ -58,8 +60,10 @@ class OracionesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Oraciones $oraciones)
+    public function destroy(int $oraciones)
     {
         //
+        return Oraciones::destroy($oraciones);
+
     }
 }

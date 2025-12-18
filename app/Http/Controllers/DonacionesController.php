@@ -63,9 +63,9 @@ class DonacionesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Donaciones $donaciones)
+    public function destroy(int $donaciones)
     {
         //
-        return Donaciones::destroy($donaciones->id);
+        return Donaciones::destroy($donaciones);
     }
 }

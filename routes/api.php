@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DonacionesController;
 use App\Http\Controllers\EventosController;
 use App\Http\Controllers\MetodoPagoController;
+use App\Http\Controllers\OracionesController;
 use App\Http\Controllers\TipoDonacionController;
 use App\Http\Controllers\TipoEventoController;
 use App\Models\TipoDonacion;
@@ -33,4 +34,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('tipoEvento', TipoEventoController::class);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('oraciones', OracionesController::class);
 });
