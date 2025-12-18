@@ -57,9 +57,13 @@ class TipoEventoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(TipoEvento $tipoEvento)
+    public function edit(TipoEvento $tipoEvento, Request $request)
     {
+
+
         //
+
+
     }
 
     /**
@@ -67,6 +71,13 @@ class TipoEventoController extends Controller
      */
     public function update(Request $request, TipoEvento $tipoEvento)
     {
+
+        $request->validate([
+            'nombre_evento' => ['required', 'string', 'max:50'],
+            'descripcion_evento' => ['nullable', 'string']
+        ]);
+        $tipoEvento->update($request->all());
+        return response()->json($tipoEvento, 200);
         //
     }
 
