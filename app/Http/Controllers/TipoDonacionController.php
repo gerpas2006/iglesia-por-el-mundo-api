@@ -12,6 +12,7 @@ class TipoDonacionController extends Controller
      */
     public function index()
     {
+        return TipoDonacion::all(); 
         //
     }
 
@@ -59,16 +60,23 @@ class TipoDonacionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TipoDonacion $tipoDonacion)
+    public function update(Request $request, TipoDonacion $tipoDonacione)
     {
-        //
+        $request->validate([
+            'nombre_donacion' => ['required', 'string', 'max:50'],
+            'descripcion_donacion' => ['nullable', 'string']
+        ]);
+        
+        $tipoDonacione->update($request->all());
+        return response()->json($tipoDonacione, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TipoDonacion $tipoDonacion)
+    public function destroy(int $tipoDonacion)
     {
-        //
+        //  
+        return TipoDonacion::destroy($tipoDonacion);
     }
 }

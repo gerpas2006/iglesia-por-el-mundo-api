@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('fecha_donacion');
             $table->enum('metodo', ['bizum', 'tarjeta', 'PayPal'])->default('bizum');
             $table->foreignId('user_id')->constrained('users');
-            $table->foreignId('tipo_donacion_id')->constrained('tipo_donacions');
+            $table->foreignId('tipo_donacion_id')->nullable()->constrained('tipo_donacions')->onDelete("set null");
             $table->timestamps();
         });
     }

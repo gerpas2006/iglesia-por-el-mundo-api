@@ -22,6 +22,7 @@ class OracionesController extends Controller
      */
     public function create()
     {
+        
         //
     }
 
@@ -30,6 +31,19 @@ class OracionesController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre_oracion' => ['required', 'string', 'max:255'],
+            'texto_oracion' => ['required', 'string'],
+            'autor' => ['required', 'string', 'max:255'],
+            'tipo_oracion_id' => ['nullable', 'exists:tipo_oracions,id']
+        ]);
+        $oracion = Oraciones::create([
+            'nombre_oracion' => $request->nombre_oracion,
+            'texto_oracion' => $request->texto_oracion,
+            'autor' => $request->autor,
+            'tipo_oracion_id' => $request->tipo_oracion_id
+        ]);
+        return response()->json($oracion, 201);
         //
     }
 
@@ -52,8 +66,16 @@ class OracionesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Oraciones $oraciones)
+    public function update(Request $request, Oraciones $oracione)
     {
+        $request->validate([
+            'nombre_oracion' => ['required', 'string', 'max:255'],
+            'texto_oracion' => ['required', 'string'],
+            'autor' => ['required', 'string', 'max:255'],
+            'tipo_oracion_id' => ['nullable', 'exists:tipo_oracions,id']
+        ]);
+        $oracione->update($request->all());
+        return response()->json($oracione, 200);
         //
     }
 

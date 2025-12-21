@@ -74,9 +74,19 @@ class EventosController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Eventos $eventos)
+    public function update(Request $request, Eventos $evento)
     {
-        //
+        $request->validate([
+            'nombre_evento' => ['required', 'string', 'max:255'],
+            'fecha_evento' => ['required', 'date_format:Y-m-d H:i:s'],
+            'ubicacion' => ['required', 'string', 'max:255'],
+            'descripcion_evento' => ['required', 'string'],
+            'estado' => ['boolean'],
+            'tipo_evento_id' => ['required', 'exists:tipo_eventos,id'],
+        ]);
+        
+        $evento->update($request->all());
+        return response()->json($evento, 200);
     }
 
     /**

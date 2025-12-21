@@ -11,6 +11,7 @@ class Oraciones extends Model
     protected $fillable = [
         'nombre_oracion',
         'texto_oracion',
+        'autor',
         'tipo_oracion_id'
     ];
     //

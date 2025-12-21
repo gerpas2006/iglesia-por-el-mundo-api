@@ -12,6 +12,7 @@ class TipoOracionController extends Controller
      */
     public function index()
     {
+        return TipoOracion::all();
         //
     }
 
@@ -28,6 +29,15 @@ class TipoOracionController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'nombre_oracion' => ['required', 'string', 'max:50'],
+            'descripcion_oracion' => ['nullable', 'string']
+        ]);
+        $tipo_oracion = TipoOracion::create([
+            'nombre_oracion' => $request->nombre_oracion,
+            'descripcion_oracion' => $request->descripcion_oracion
+        ]);
+        return response()->json($tipo_oracion, 201);
         //
     }
 
@@ -52,14 +62,23 @@ class TipoOracionController extends Controller
      */
     public function update(Request $request, TipoOracion $tipoOracion)
     {
+        $request->validate([
+            'nombre_oracion' => ['required', 'string', 'max:50'],
+            'descripcion_oracion' => ['nullable', 'string']
+        ]);
+        $tipoOracion->update($request->all());
+        return response()->json($tipoOracion, 200);
         //
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TipoOracion $tipoOracion)
+    public function destroy(int $tipoOracion)
     {
+        return TipoOracion::destroy($tipoOracion);
+
+
         //
     }
 }

@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('nombre_oracion');
             $table->text('texto_oracion');
-            $table->foreignId('tipo_oracion_id')->constrained('tipo_oracions');
+            $table->text('autor');
+            $table->boolean('estado')->default(true);
+            $table->foreignId('tipo_oracion_id')->nullable()->constrained('tipo_oracions')->onDelete("set null");
             $table->timestamps();
         });
     }
