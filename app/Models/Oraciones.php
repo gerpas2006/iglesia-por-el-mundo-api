@@ -12,6 +12,7 @@ class Oraciones extends Model
         'nombre_oracion',
         'texto_oracion',
         'autor',
+        'estado',
         'tipo_oracion_id'
     ];
     //

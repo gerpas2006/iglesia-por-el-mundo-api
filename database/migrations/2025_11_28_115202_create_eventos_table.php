@@ -17,7 +17,7 @@ return new class extends Migration
             $table->dateTime('fecha_evento');
             $table->string('ubicacion');
             $table->text('descripcion_evento');
-            $table->boolean('estado')->default(true);
+            $table->boolean('estado')->default(false);
             $table->foreignId('user_id')->constrained('users');
             $table->foreignId('tipo_evento_id')->nullable()->constrained('tipo_eventos')->onDelete('set null');
             $table->timestamps();

@@ -72,6 +72,7 @@ class OracionesController extends Controller
             'nombre_oracion' => ['required', 'string', 'max:255'],
             'texto_oracion' => ['required', 'string'],
             'autor' => ['required', 'string', 'max:255'],
+            'estado' => ['boolean'],
             'tipo_oracion_id' => ['nullable', 'exists:tipo_oracions,id']
         ]);
         $oracione->update($request->all());

@@ -64,7 +64,7 @@ class TipoOracionController extends Controller
     {
         $request->validate([
             'nombre_oracion' => ['required', 'string', 'max:50'],
-            'descripcion_oracion' => ['nullable', 'string']
+            'descripcion_oracion' => ['nullable', 'string', 'max:255']
         ]);
         $tipoOracion->update($request->all());
         return response()->json($tipoOracion, 200);
