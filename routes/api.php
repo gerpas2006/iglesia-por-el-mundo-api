@@ -4,6 +4,8 @@ require __DIR__ . '/auth.php';
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DonacionesController;
+use App\Http\Controllers\TipoCitaController;
+use App\Http\Controllers\CitasController;
 use App\Http\Controllers\EventosController;
 use App\Http\Controllers\MetodoPagoController;
 use App\Http\Controllers\OracionesController;
@@ -43,4 +45,12 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('tipoOracion', TipoOracionController::class);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('citas', CitasController::class);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('tipoCita', TipoCitaController::class);
 });

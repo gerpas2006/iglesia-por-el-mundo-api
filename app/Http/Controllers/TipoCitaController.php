@@ -12,15 +12,17 @@ class TipoCitaController extends Controller
      */
     public function index()
     {
+
+        return TipoCita::all();
         //
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
     }
 
     /**
@@ -28,7 +30,15 @@ class TipoCitaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nombre_cita' => ['required', 'string', 'max:50'],
+            'descripcion_cita' => ['nullable', 'string']
+        ]);
+        $tipo_cita = TipoCita::create([
+            'nombre_cita' => $request->nombre_cita,
+            'descripcion_cita' => $request->descripcion_cita
+        ]);
+        return response()->json($tipo_cita, 201);
     }
 
     /**
@@ -52,14 +62,22 @@ class TipoCitaController extends Controller
      */
     public function update(Request $request, TipoCita $tipoCita)
     {
-        //
+        $request->validate([
+            'nombre_cita' => ['required', 'string', 'max:50'],
+            'descripcion_cita' => ['nullable', 'string']
+        ]);
+        
+        $tipoCita->update($request->all());
+        return response()->json($tipoCita, 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TipoCita $tipoCita)
+    public function destroy(int $tipoCita)
     {
+
+        return TipoCita::destroy($tipoCita);
         //
     }
 }

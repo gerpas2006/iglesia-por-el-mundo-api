@@ -12,6 +12,10 @@ class CitasController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->role === 'admin') {
+            return citas::all();
+        }
+        return citas::where('user_id', auth()->id())->get();
         //
     }
 
@@ -58,8 +62,9 @@ class CitasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(citas $citas)
+    public function destroy(int $citas)
     {
+        return citas::destroy($citas);
         //
     }
 }

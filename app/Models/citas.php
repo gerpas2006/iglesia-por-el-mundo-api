@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class citas extends Model
 {
@@ -13,6 +15,8 @@ class citas extends Model
         'apellido_solicitante',
         'fecha_y_hora_cita',
         'mensaje',
+        'estado',
+        'contacto',
         'tipo_cita_id',
         'user_id'
     ];

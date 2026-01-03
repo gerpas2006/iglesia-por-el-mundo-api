@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('apellido_solicitante');
             $table->dateTime('fecha_y_hora_cita');
             $table->text('mensaje');
+            $table->enum('estado', ['pendiente', 'aprobada', 'rechazada'])->default('pendiente');
+            $table->text('contacto');
             $table->foreignId('tipo_cita_id')->constrained('tipo_citas');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
