@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('reseñas', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo_reseñas');
-            $table->integer('calificacion_reseña');
-            $table->text('comentario_reseña');
-            $table->date('fecha_reseña');
-            $table->string('usuario_reseña');
+            $table->string('titulo_reseneas');
+            $table->integer('calificacion_resenea');
+            $table->text('comentario_resenea');
+            $table->date('fecha_resenea');
+            $table->string('usuario');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
