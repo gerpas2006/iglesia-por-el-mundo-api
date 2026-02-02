@@ -13,9 +13,9 @@ class CitasController extends Controller
     public function index()
     {
         if (auth()->user()->role === 'admin') {
-            return citas::all();
+            return citas::with('tipoCita')->get();
         }
-        return citas::where('user_id', auth()->id())->get();
+        return citas::with('tipoCita')->where('user_id', auth()->id())->get();
         //
     }
 
@@ -56,6 +56,19 @@ class CitasController extends Controller
      */
     public function update(Request $request, citas $citas)
     {
+        $request->validate([
+            'nombre_solicitante' => ['required', 'string', 'max:255'],
+            'apellido_solicitante' => ['required', 'string', 'max:255'],
+            'fecha_y_hora_cita' => ['required', 'date_format:Y-m-d H:i:s'],
+            'mensaje' => ['nullable', 'string'],
+            'estado' => ['required', 'in:pendiente,aprobada,rechazada'],
+            'contacto' => ['required', 'string', 'max:255'],
+            'tipo_cita_id' => ['required', 'exists:tipo_citas,id'],
+        ]);
+        
+        $citas->update($request->all());
+        $citas->load('tipoCita');
+        return response()->json($citas, 200);
         //
     }
 

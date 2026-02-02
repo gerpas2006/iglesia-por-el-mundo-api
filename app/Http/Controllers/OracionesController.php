@@ -13,7 +13,7 @@ class OracionesController extends Controller
     public function index()
     {
 
-        return Oraciones::all();
+        return Oraciones::with('tipoOracion')->get();
         //
     }
 
@@ -43,6 +43,7 @@ class OracionesController extends Controller
             'autor' => $request->autor,
             'tipo_oracion_id' => $request->tipo_oracion_id
         ]);
+        $oracion->load('tipoOracion');
         return response()->json($oracion, 201);
         //
     }
@@ -76,6 +77,7 @@ class OracionesController extends Controller
             'tipo_oracion_id' => ['nullable', 'exists:tipo_oracions,id']
         ]);
         $oracione->update($request->all());
+        $oracione->load('tipoOracion');
         return response()->json($oracione, 200);
         //
     }

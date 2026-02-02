@@ -13,10 +13,10 @@ class EventosController extends Controller
     public function index()
     {
         if (auth()->user()->role === 'admin') {
-            return Eventos::all();
+            return Eventos::with('tipoEvento')->get();
         }
 
-        return Eventos::where('user_id', auth()->id())->get();
+        return Eventos::with('tipoEvento')->where('user_id', auth()->id())->get();
         //
     }
 
@@ -52,6 +52,7 @@ class EventosController extends Controller
             'user_id' => auth()->id(),
             'tipo_evento_id' => $request->tipo_evento_id,
         ]);
+        $eventos->load('tipoEvento');
 
         return response()->json($eventos, 201);
     }
@@ -86,6 +87,7 @@ class EventosController extends Controller
         ]);
         
         $evento->update($request->all());
+        $evento->load('tipoEvento');
         return response()->json($evento, 200);
     }
 

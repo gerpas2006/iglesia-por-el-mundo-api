@@ -13,10 +13,10 @@ class DonacionesController extends Controller
     public function index()
     {
         if (auth()->user()->role === 'admin') {
-            return Donaciones::all();
+            return Donaciones::with('tipoDonacion')->get();
         }
         
-        return Donaciones::where('user_id', auth()->id())->get();
+        return Donaciones::with('tipoDonacion')->where('user_id', auth()->id())->get();
     }
 
     /**
@@ -41,6 +41,7 @@ class DonacionesController extends Controller
     public function show(Donaciones $donaciones)
     {
         //
+        $donaciones->load('tipoDonacion');
         return $donaciones;
     }
 
