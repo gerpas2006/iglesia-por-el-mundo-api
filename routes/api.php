@@ -13,6 +13,7 @@ use App\Http\Controllers\OracionesController;
 use App\Http\Controllers\TipoDonacionController;
 use App\Http\Controllers\TipoEventoController;
 use App\Http\Controllers\TipoOracionController;
+use App\Http\Controllers\UsersController;
 use App\Models\TipoDonacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -59,3 +60,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('reseneas', ReseñasController::class);
 });
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::apiResource('usuarios', UsersController::class);
+}); 
