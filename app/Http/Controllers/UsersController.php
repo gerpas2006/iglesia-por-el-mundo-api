@@ -60,16 +60,11 @@ class UsersController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
         ]);
-        
-        $user->name = $request->name;
-        $user->email = $request->email;
-        
-        if ($request->filled('password')) {
-            $user->password = $request->password;
-        }
-        
-        $user->save();
-        
+        $user->update([
+             'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password ? bcrypt($request->password) : $user->password,
+        ]);   
         return response()->json($user, 200);
         //
     }
