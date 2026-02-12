@@ -12,10 +12,8 @@ class ReseñasController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->role === 'admin') {
-            return Reseñas::all();
-        }
-        return Reseñas::where('user_id', auth()->id())->get();
+
+        return Reseñas::all();
         //
     }
 
