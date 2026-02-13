@@ -61,7 +61,7 @@ class UsersController extends Controller
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
         ]);
         $user->update([
-             'name' => $request->name,
+            'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password ? bcrypt($request->password) : $user->password,
         ]);   

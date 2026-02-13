@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
-class Reseñas extends Model
+class Reseneas extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -15,6 +15,7 @@ class Reseñas extends Model
         'comentario_resenea',
         'fecha_resenea',
         'usuario',
+        'user_id'
     ];
     //
 }

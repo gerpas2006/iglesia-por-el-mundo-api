@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reseñas;
+use App\Models\Reseneas;
 use Illuminate\Http\Request;
 
-class ReseñasController extends Controller
+class ReseneasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class ReseñasController extends Controller
     public function index()
     {
 
-        return Reseñas::all();
+        return Reseneas::all();
         //
     }
 
@@ -30,6 +30,16 @@ class ReseñasController extends Controller
      */
     public function store(Request $request)
     {
+        $reseneas = Reseneas::create([
+            'titulo_reseneas' => $request->titulo_reseneas,
+            'calificacion_resenea' => $request->calificacion_resenea,
+            'comentario_resenea' => $request->comentario_resenea,
+            'fecha_resenea' => $request->fecha_resenea,
+            'usuario' => $request->usuario,
+            'user_id' => $request->user_id
+        ]);
+        return response()->json($reseneas, 201);
+    
         //
     }
 
@@ -60,10 +70,10 @@ class ReseñasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(int $reseñas)
+    public function destroy(int $reseneas)
     {
 
-        return Reseñas::destroy($reseñas);
+        return Reseneas::destroy($reseneas);
         //
     }
 }

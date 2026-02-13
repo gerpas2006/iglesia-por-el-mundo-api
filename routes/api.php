@@ -6,13 +6,13 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\DonacionesController;
 use App\Http\Controllers\TipoCitaController;
 use App\Http\Controllers\CitasController;
-use App\Http\Controllers\ReseñasController;
 use App\Http\Controllers\EventosController;
 use App\Http\Controllers\MetodoPagoController;
 use App\Http\Controllers\OracionesController;
 use App\Http\Controllers\TipoDonacionController;
 use App\Http\Controllers\TipoEventoController;
 use App\Http\Controllers\TipoOracionController;
+use App\Http\Controllers\ReseneasController;
 use App\Http\Controllers\UsersController;
 use App\Models\TipoDonacion;
 use Illuminate\Http\Request;
@@ -58,7 +58,7 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::apiResource('reseneas', ReseñasController::class);
+    Route::apiResource('reseneas', ReseneasController::class);
 });
 
 Route::middleware('auth:sanctum')->group(function () {
