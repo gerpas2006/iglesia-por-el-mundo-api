@@ -14,8 +14,11 @@ class Reseneas extends Model
         'calificacion_resenea',
         'comentario_resenea',
         'fecha_resenea',
-        'usuario',
         'user_id'
     ];
-    //
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

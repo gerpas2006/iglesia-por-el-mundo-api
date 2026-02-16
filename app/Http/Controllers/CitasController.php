@@ -54,22 +54,36 @@ class CitasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, citas $citas)
+    public function update(Request $request, $id)
     {
+        $cita = citas::findOrFail($id);
+        
         $request->validate([
             'nombre_solicitante' => ['required', 'string', 'max:255'],
             'apellido_solicitante' => ['required', 'string', 'max:255'],
-            'fecha_y_hora_cita' => ['required', 'date_format:Y-m-d H:i:s'],
+            'fecha_y_hora_cita' => ['required', 'date'],
             'mensaje' => ['nullable', 'string'],
             'estado' => ['required', 'in:pendiente,aprobada,rechazada'],
             'contacto' => ['required', 'string', 'max:255'],
             'tipo_cita_id' => ['required', 'exists:tipo_citas,id'],
         ]);
         
-        $citas->update($request->all());
-        $citas->load('tipoCita');
-        return response()->json($citas, 200);
-        //
+        $cita->update([
+            'nombre_solicitante' => $request->nombre_solicitante,
+            'apellido_solicitante' => $request->apellido_solicitante,
+            'fecha_y_hora_cita' => $request->fecha_y_hora_cita,
+            'mensaje' => $request->mensaje,
+            'estado' => $request->estado,
+            'contacto' => $request->contacto,
+            'tipo_cita_id' => $request->tipo_cita_id,
+        ]);
+        
+        $cita->load('tipoCita');
+        
+        return response()->json([
+            'message' => 'Cita actualizada exitosamente',
+            'data' => $cita
+        ], 200);
     }
 
     /**

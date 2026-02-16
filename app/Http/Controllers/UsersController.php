@@ -53,20 +53,31 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
+        $user = User::findOrFail($id);
+        
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,' . $user->id],
-            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
+            'password' => ['nullable', 'string', 'min:8'],
         ]);
-        $user->update([
+        
+        $dataToUpdate = [
             'name' => $request->name,
             'email' => $request->email,
-            'password' => $request->password ? bcrypt($request->password) : $user->password,
-        ]);   
-        return response()->json($user, 200);
-        //
+        ];
+        
+        if ($request->filled('password')) {
+            $dataToUpdate['password'] = bcrypt($request->password);
+        }
+        
+        $user->update($dataToUpdate);
+        
+        return response()->json([
+            'message' => 'Usuario actualizado exitosamente',
+            'data' => $user
+        ], 200);
     }
 
     /**

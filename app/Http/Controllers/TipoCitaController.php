@@ -60,15 +60,24 @@ class TipoCitaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TipoCita $tipoCita)
+    public function update(Request $request, $id)
     {
+        $tipoCita = TipoCita::findOrFail($id);
+        
         $request->validate([
             'nombre_cita' => ['required', 'string', 'max:50'],
             'descripcion_cita' => ['nullable', 'string']
         ]);
         
-        $tipoCita->update($request->all());
-        return response()->json($tipoCita, 200);
+        $tipoCita->update([
+            'nombre_cita' => $request->nombre_cita,
+            'descripcion_cita' => $request->descripcion_cita
+        ]);
+        
+        return response()->json([
+            'message' => 'Tipo de cita actualizado exitosamente',
+            'data' => $tipoCita
+        ], 200);
     }
 
     /**

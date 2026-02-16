@@ -30,17 +30,27 @@ class ReseneasController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'titulo_reseneas' => ['required', 'string', 'max:255'],
+            'calificacion_resenea' => ['required', 'integer', 'min:1', 'max:5'],
+            'comentario_resenea' => ['required', 'string'],
+            'fecha_resenea' => ['required', 'date']
+        ]);
+        
         $reseneas = Reseneas::create([
             'titulo_reseneas' => $request->titulo_reseneas,
             'calificacion_resenea' => $request->calificacion_resenea,
             'comentario_resenea' => $request->comentario_resenea,
             'fecha_resenea' => $request->fecha_resenea,
-            'usuario' => $request->usuario,
-            'user_id' => $request->user_id
+            'user_id' => auth()->id()
         ]);
-        return response()->json($reseneas, 201);
-    
-        //
+        
+        $reseneas->load('user');
+        
+        return response()->json([
+            'message' => 'Reseña creada exitosamente',
+            'data' => $reseneas
+        ], 201);
     }
 
     /**

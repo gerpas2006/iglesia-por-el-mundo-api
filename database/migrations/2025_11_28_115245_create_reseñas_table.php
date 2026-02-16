@@ -17,7 +17,6 @@ return new class extends Migration
             $table->integer('calificacion_resenea');
             $table->text('comentario_resenea');
             $table->date('fecha_resenea');
-            $table->string('usuario');
             $table->foreignId('user_id')->constrained('users');
             $table->timestamps();
         });
