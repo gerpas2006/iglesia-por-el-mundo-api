@@ -7,14 +7,12 @@ use App\Http\Controllers\DonacionesController;
 use App\Http\Controllers\TipoCitaController;
 use App\Http\Controllers\CitasController;
 use App\Http\Controllers\EventosController;
-use App\Http\Controllers\MetodoPagoController;
 use App\Http\Controllers\OracionesController;
 use App\Http\Controllers\TipoDonacionController;
 use App\Http\Controllers\TipoEventoController;
 use App\Http\Controllers\TipoOracionController;
 use App\Http\Controllers\ReseneasController;
 use App\Http\Controllers\UsersController;
-use App\Models\TipoDonacion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
