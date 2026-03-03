@@ -12,9 +12,7 @@ class ReseneasController extends Controller
      */
     public function index()
     {
-
-        return Reseneas::all();
-        //
+        return Reseneas::with('user:id,name')->get();
     }
 
     /**
@@ -34,14 +32,13 @@ class ReseneasController extends Controller
             'titulo_reseneas' => ['required', 'string', 'max:255'],
             'calificacion_resenea' => ['required', 'integer', 'min:1', 'max:5'],
             'comentario_resenea' => ['required', 'string'],
-            'fecha_resenea' => ['required', 'date']
         ]);
         
         $reseneas = Reseneas::create([
             'titulo_reseneas' => $request->titulo_reseneas,
             'calificacion_resenea' => $request->calificacion_resenea,
             'comentario_resenea' => $request->comentario_resenea,
-            'fecha_resenea' => $request->fecha_resenea,
+            'fecha_resenea' => now(),
             'user_id' => auth()->id()
         ]);
         

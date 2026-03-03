@@ -32,6 +32,30 @@ class DonacionesController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validated = request(
+            [
+                'nombre_donante' => ['required', 'string', 'max:255'],
+                'apellido_donante' => ['required', 'string', 'max:255'],
+                'donacion' => ['required', 'numeric'],
+                'mensaje' => ['nullable', 'string'],
+                'fecha_donacion' => ['required', 'date_format:Y-m-d H:i:s'],
+                'metodo' => ['required', 'string', 'max:255'],
+                'tipo_donacion_id' => ['required', 'exists:tipo_donaciones,id']
+            ]
+        );
+        $donaciones = Donaciones::create([
+            'nombre_donante' => $request->nombre_donante,
+            'apellido_donante' => $request->apellido_donante,
+            'donacion' => $request->donacion,
+            'mensaje' => $request->mensaje,
+            'fecha_donacion' => now(),
+            'metodo' => $request->metodo,
+            'user_id' => auth()->id(),
+            'tipo_donacion_id' => $request->tipo_donacion_id
+        ]);
+        $donaciones->load('tipoDonacion');
+        return response()->json($donaciones, 201);
         //
     }
 

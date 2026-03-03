@@ -12,11 +12,7 @@ class EventosController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->role === 'admin') {
-            return Eventos::with('tipoEvento')->get();
-        }
-
-        return Eventos::with('tipoEvento')->where('user_id', auth()->id())->get();
+        return Eventos::with('tipoEvento')->get();
         //
     }
 
