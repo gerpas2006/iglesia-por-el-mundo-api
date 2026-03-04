@@ -32,6 +32,32 @@ class CitasController extends Controller
      */
     public function store(Request $request)
     {
+
+            $request->validate([
+                'nombre_solicitante' => ['required', 'string', 'max:255'],
+                'apellido_solicitante' => ['required', 'string', 'max:255'],
+                'fecha_y_hora_cita' => ['required', 'date'],
+                'mensaje' => ['nullable', 'string'],
+                'contacto' => ['required', 'string', 'max:255'],
+                'tipo_cita_id' => ['required', 'exists:tipo_citas,id'],
+            ]);
+
+            $cita = citas::create([
+                'nombre_solicitante' => $request->nombre_solicitante,
+                'apellido_solicitante' => $request->apellido_solicitante,
+                'fecha_y_hora_cita' => $request->fecha_y_hora_cita,
+                'mensaje' => $request->mensaje,
+                'estado' => 'pendiente',
+                'contacto' => $request->contacto,
+                'tipo_cita_id' => $request->tipo_cita_id,
+                'user_id' => auth()->id(),
+            ]);
+
+            $cita->load('tipoCita');
+            return response()->json([
+                'message' => 'Cita creada exitosamente',
+                'data' => $cita
+            ], 201);
         //
     }
 
